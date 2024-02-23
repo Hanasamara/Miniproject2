@@ -6,44 +6,38 @@ on:
       - production
 
 jobs:
-  deploy_to_production:
+  deploy_to_pipeline:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Set up Node environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
+      - name: Setup Node environment
+        uses: actions/setup-node@v4
+        # with:
+        #   node-version: 14
 
       - name: Install dependencies for server
         working-directory: ./server
-        run: |
-          npm install
+        run: npm install
 
       - name: Run backend tests
         working-directory: ./server
-        run: |
-          npm test
+        run: npm test
 
       - name: Install dependencies for client
         working-directory: ./client
-        run: |
-          npm install
+        run: npm install
 
       - name: Run frontend tests
         working-directory: ./client
-        run: |
-          npm test
+        run: npm test
 
-      - name: Run server deploy hook
-        working-directory: ./server
-        run: |
-          # Use curl to trigger server deployment hook with secrets
+      # - name: Run server deploy hook
+      #   working-directory: ./server
+      #   run: curl ${{ secrets.SERVER_DEPLOYMENT_HOOK }}
 
-      - name: Run client deploy hook
-        working-directory: ./client
-        run: |
-          # Use curl to trigger client deployment hook with secrets
+      # - name: Run client deploy hook
+      #   working-directory: ./client
+      #   run: curl ${{ secrets.CLIENT_DEPLOYMENT_HOOK }}
