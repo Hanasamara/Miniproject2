@@ -12,7 +12,7 @@ function Addcurrency()
         e.preventDefault();
         try {
             //console.log(currencyCode,countryId,conversionRate);
-            await axios.post("http://localhost:3001/api/currency/",
+            await axios.post("/api/currency/",
               {
                 "currencyCode": currencyCode,
                 "countryId": countryId,
