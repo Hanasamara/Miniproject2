@@ -33,6 +33,7 @@ jobs:
       - name: Run frontend tests
         working-directory: ./client
         run: npm test
+        timeout-minutes: 1
 
       # - name: Run server deploy hook
       #   working-directory: ./server
