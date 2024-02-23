@@ -21,7 +21,7 @@ const app = express() // Creates an express application in app
  */
 app.use(cors())
 app.use(express.json())
-
+app.use(express.static('dist'))
 
  // Added morgan middleware to log requests
 app.use(middleware.logger);
@@ -39,7 +39,7 @@ app.use(middleware.unknownEndpoint);
 const PORT = process.env.PORT;
 
 const server = app.listen(PORT, () => {
-  console.log(`Server running on port: ${PORT}`)
+  console.log(`Server running on PORT: ${PORT}`)
 });
 
 module.exports = server
