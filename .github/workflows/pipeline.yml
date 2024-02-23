@@ -36,8 +36,8 @@ jobs:
 
       # - name: Run server deploy hook
       #   working-directory: ./server
-      #   run: curl ${{ secrets.SERVER_DEPLOYMENT_HOOK }}
+      #   run: curl 
 
       # - name: Run client deploy hook
       #   working-directory: ./client
-      #   run: curl ${{ secrets.CLIENT_DEPLOYMENT_HOOK }}
+        # run: curl 
