@@ -19,13 +19,14 @@
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import axios from 'axios';
 /**
  * Import all the related component(s) here:
  * 
  * 
  */
 import Convert from "../components/Convert"
-
+jest.mock('axios');
 /**
  * we will test the conversion section that contains: currency code & amount input fields, 
  *   Convert button and converted amount text. 
@@ -38,7 +39,16 @@ import Convert from "../components/Convert"
 test('Testing conversion section', async () => {
     // convertCurrency is a mock function now
     const convertCurrency = jest.fn();
+    // Mocking axios get method
+    
     const user = userEvent.setup();
+
+    const mockedCurrencies = [
+        { currencyCode: 'USD', conversionRate: 1 },
+        { currencyCode: 'CAD', conversionRate: 0.78 } 
+    ];
+
+    axios.get.mockResolvedValue({ data: mockedCurrencies });
     render(<Convert />);
 
    // Type values into input fields
@@ -62,8 +72,9 @@ test('Testing conversion section', async () => {
     // });
     
     // check if output match desired amount
-    const convertedAmount = await screen.findByText("78");
-    console.log(convertedAmount);
+    const convertedAmount = await screen.getByTitle('outputCurrencyAmount');
+
+    // console.log(convertedAmount);
     console.log(convertedAmount.textContent);
     expect(Number(convertedAmount.textContent)).toBe(78);
 
