@@ -26,6 +26,7 @@ app.use(express.static('dist'))
  // Added morgan middleware to log requests
 app.use(middleware.logger);
 
+// app.use('/',)
 
 app.use('/api/country',countryRouter);
 
