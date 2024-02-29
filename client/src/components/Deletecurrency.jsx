@@ -10,7 +10,7 @@ function Deletecurrency()
         e.preventDefault();
         try {
             // find specific row to update it
-            const allCurrencies = await axios.get('http://localhost:3001/api/currency/').then(response => response.data);
+            const allCurrencies = await axios.get('/api/currency/').then(response => response.data);
             console.log(allCurrencies);
 
             const specificCurrencyIndex = allCurrencies.findIndex((currency) => currency.currencyCode == currencyCode);
@@ -18,7 +18,7 @@ function Deletecurrency()
             console.log(specificCurrency.id);
 
             //Update that currency
-            const deleteCurrency = await axios.delete(`http://localhost:3001/api/currency/${specificCurrency.id}`).then(response => response.data);
+            const deleteCurrency = await axios.delete(`/api/currency/${specificCurrency.id}`).then(response => response.data);
 
             console.log(deleteCurrency);
 

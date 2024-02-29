@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from "axios";
+import currencyServices from '../services/currencyServices';
 
 function Convert()
 {
@@ -13,7 +14,7 @@ function Convert()
         e.preventDefault();
         try {
             // Retrieve all currencies
-            const allCurrencies = await axios.get('http://localhost:3001/api/currency/').then(response => response.data);
+            const allCurrencies = await currencyServices.getCurrencies();
             console.log(allCurrencies);
 
             // find from currency rate

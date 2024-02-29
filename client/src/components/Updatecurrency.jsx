@@ -10,7 +10,7 @@ function Updatecurrency()
         e.preventDefault();
         try {
             // find specific row to update it
-            const allCurrencies = await axios.get('http://localhost:3001/api/currency/').then(response => response.data);
+            const allCurrencies = await axios.get('/api/currency/').then(response => response.data);
             console.log(allCurrencies);
 
             const specificCurrencyIndex = allCurrencies.findIndex((currency) => currency.currencyCode == currencyCode);
@@ -18,7 +18,7 @@ function Updatecurrency()
             console.log(specificCurrency.id);
 
             //Update that currency
-            const updateCurrency = await axios.put(`http://localhost:3001/api/currency/${specificCurrency.id}/${currencyRate}`).then(response => response.data);
+            const updateCurrency = await axios.put(`/api/currency/${specificCurrency.id}/${currencyRate}`).then(response => response.data);
 
             console.log(updateCurrency);
 

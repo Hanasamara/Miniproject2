@@ -1,7 +1,7 @@
 const express = require('express');  // We import the express application
 require("dotenv").config();
 const cors = require('cors'); // Necessary for localhost
-const { Console, error } = require('console');
+// const { Console, error } = require('console');
 const middleware = require('./utils/middleware');
 const cursRouter =require('./routers/currencies');
 const countryRouter = require('./routers/countries');
